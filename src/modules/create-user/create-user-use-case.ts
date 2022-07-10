@@ -1,6 +1,6 @@
-import { User } from '../../entities/user'
-import { Either, failure, success } from '../../helpers/logic/Either'
-import { ICreateUserRepository } from '../../repositories/users/create-user/i-create-user-repository'
+import { User } from '@/entities/user'
+import { Either, failure, success } from '@/helpers/logic/Either'
+import { ICreateUserRepository } from '@/repositories/users/create-user/i-create-user-repository'
 import { ICreateUserDTO } from './create-user-dto'
 
 export class CreateUserUseCase {

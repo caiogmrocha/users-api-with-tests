@@ -1,4 +1,4 @@
-import { InMemoryCreateUserRepository } from "../../repositories/users/create-user/in-memory-create-user-repository"
+import { InMemoryCreateUserRepository } from "@/repositories/users/create-user/in-memory-create-user-repository"
 import { ICreateUserDTO } from "./create-user-dto"
 import { CreateUserUseCase } from "./create-user-use-case"
 
