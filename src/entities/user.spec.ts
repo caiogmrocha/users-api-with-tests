@@ -8,12 +8,6 @@ describe('User Entity', () => {
       password: 'any_password',
     });
 
-    expect(sut).toBeInstanceOf(User)
-    expect(sut).toEqual(expect.objectContaining({
-      id: expect.any(String),
-      name: expect.any(String),
-      email: expect.any(String),
-      password: expect.any(String),
-    }))
+    expect(sut.props).toHaveProperty('id')
   })
 })

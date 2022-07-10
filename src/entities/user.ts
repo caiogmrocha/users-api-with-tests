@@ -1,4 +1,4 @@
-interface IUserProps {
+export interface IUserProps {
   id?: string;
   name: string;
   email: string;
@@ -6,10 +6,13 @@ interface IUserProps {
 }
 
 export class User {
+  props: IUserProps
+
   constructor (props: IUserProps) {
     if (!props.id) {
       props.id = `${Date.now()}`
     }
-    Object.assign(this, props)
+
+    this.props = props
   }
 }
