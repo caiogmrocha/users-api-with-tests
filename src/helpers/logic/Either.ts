@@ -1,41 +1,41 @@
-export class Failure<L, A> {
-  readonly value: L
+export class Failure<F, S> {
+  readonly value: F
 
-  constructor (value: L) {
+  constructor (value: F) {
     this.value = value
   }
 
-  isFailure (): this is Failure<L, A> {
+  isFailure (): this is Failure<F, S> {
     return true
   }
 
-  isSuccess (): this is Success<L, A> {
+  isSuccess (): this is Success<F, S> {
     return false
   }
 }
 
-export class Success<L, A> {
-  readonly value: A
+export class Success<F, S> {
+  readonly value: S
 
-  constructor (value: A) {
+  constructor (value: S) {
     this.value = value
   }
 
-  isFailure (): this is Failure<L, A> {
+  isFailure (): this is Failure<F, S> {
     return false
   }
 
-  isSuccess (): this is Success<L, A> {
+  isSuccess (): this is Success<F, S> {
     return true
   }
 }
 
-export type Either<L, A> = Failure<L, A> | Success<L, A>
+export type Either<F, S> = Failure<F, S> | Success<F, S>
 
-export const failure = <L, A>(l: L): Either<L, A> => {
-  return new Failure<L, A>(l)
+export const failure = <F, S>(l: F): Either<F, S> => {
+  return new Failure<F, S>(l)
 }
 
-export const success = <L, A>(a: A): Either<L, A> => {
-  return new Success<L, A>(a)
+export const success = <F, S>(a: S): Either<F, S> => {
+  return new Success<F, S>(a)
 }
