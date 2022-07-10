@@ -7,9 +7,9 @@ project
 │   ├── /entities     # entidades da nossa aplicação
 │   ├── /repositories # regra de negócio do banco de dados
 │   │   └── /any
-│   │       ├── /i-user-repository.ts         # contrato do repositório
-│   │       ├── /user-repository-in-memory.ts # repositório para testes
-│   │       └── /user-repository.ts           # repositório real
+│   │       ├── /i-any-repository.ts         # contrato do repositório
+│   │       ├── /any-repository-in-memory.ts # repositório para testes
+│   │       └── /any-repository.ts           # repositório real
 │   ├── /modules      # casos de uso da aplicação
 │   │   └── /any-module
 │   │       ├── /any-use-case.ts           # regra de negócio geral
