@@ -17,7 +17,13 @@ project
 │   │       ├── /any-controller.ts         # tratativas das requisições HTTP
 │   │       ├── /any-controller.spec.ts    # testes do controller
 │   │       └── /any-controller-factory.ts # factory da instância do controller
-│   ├── /routes      # rotas da aplicação
+│   ├── /routes # rotas da aplicação
+│   ├── /validation                # regras de validação de dados
+│   │   ├── /errors                # erros de validação
+│   │   │   └── any-error.ts       # erro
+│   │   ├── /i-validation.ts       # contrato do validador
+│   │   ├── /any-validation.ts     # validador
+│   │   └── /validation-compositor # compositor de validações
 │   ├── /app.ts      # configurações do server HTTP (ou WS)
 │   └── /server.ts   # inicialização da aplicação
 ├── /.editorconfig   # configurações do Editor Config
