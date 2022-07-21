@@ -1,5 +1,5 @@
 import { ValidationError } from "./errors/validation-error";
-import { RequiredFieldValidator } from "./required-field";
+import { RequiredFieldValidator } from "./rules/required-field";
 import { ValidationCompositor } from "./validation-compositor";
 
 describe('Validation Compositor', () => {
