@@ -1,4 +1,4 @@
-import { MissingParamError } from "../errors/missing-params-error"
+import { RequiredFieldError } from "../errors/required-field-error"
 import { RequiredFieldValidator } from "./required-field"
 
 describe('Required Field Validator', () => {
@@ -8,7 +8,7 @@ describe('Required Field Validator', () => {
 
     const error = sut.validate()
 
-    expect(error).toEqual(new MissingParamError('any_field'))
+    expect(error).toEqual(new RequiredFieldError('any_field'))
   })
 
   it('should throw if null is provided', () => {
@@ -17,7 +17,7 @@ describe('Required Field Validator', () => {
 
     const error = sut.validate()
 
-    expect(error).toEqual(new MissingParamError('any_field'))
+    expect(error).toEqual(new RequiredFieldError('any_field'))
   })
 
   it('should throw if undefined is provided', () => {
@@ -26,6 +26,6 @@ describe('Required Field Validator', () => {
 
     const error = sut.validate()
 
-    expect(error).toEqual(new MissingParamError('any_field'))
+    expect(error).toEqual(new RequiredFieldError('any_field'))
   })
 })

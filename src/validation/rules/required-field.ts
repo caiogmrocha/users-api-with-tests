@@ -1,4 +1,4 @@
-import { MissingParamError } from '../errors/missing-params-error'
+import { RequiredFieldError } from '../errors/required-field-error'
 import { IValidator } from '../i-validator'
 
 export class RequiredFieldValidator implements IValidator {
@@ -7,9 +7,9 @@ export class RequiredFieldValidator implements IValidator {
     public readonly field: unknown
   ) {}
 
-  validate (): MissingParamError | void {
+  validate (): RequiredFieldError | void {
     if (this.field === null || this.field === undefined || this.field === '') {
-      return new MissingParamError(this.fieldName)
+      return new RequiredFieldError(this.fieldName)
     }
   }
 }
