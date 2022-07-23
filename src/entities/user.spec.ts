@@ -10,4 +10,28 @@ describe('User Entity', () => {
 
     expect(sut.props).toHaveProperty('id')
   })
+
+  it('should be able to validate a User data' , () => {
+    const sut = new User({
+      name: 'John Doe',
+      email: 'john@doe.com',
+      password: 'any_password',
+    });
+
+    const result = sut.validate()
+
+    expect(result.isSuccess()).toBeTruthy()
+  })
+
+  it('should throw if a invalid User data is provided' , () => {
+    const sut = new User({
+      name: '',
+      email: '',
+      password: '',
+    });
+
+    const result = sut.validate()
+
+    expect(result.isFailure()).toBeTruthy()
+  })
 })
