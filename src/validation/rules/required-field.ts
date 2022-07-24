@@ -1,5 +1,5 @@
-import { RequiredFieldError } from '../errors/required-field-error'
-import { IValidator } from '../i-validator'
+import { RequiredFieldError } from '../errors/required-field-error';
+import { IValidator } from '../i-validator';
 
 export class RequiredFieldValidator implements IValidator {
   constructor (
@@ -9,7 +9,7 @@ export class RequiredFieldValidator implements IValidator {
 
   validate (): RequiredFieldError | void {
     if (this.field === null || this.field === undefined || this.field === '') {
-      return new RequiredFieldError(this.fieldName)
+      return new RequiredFieldError(this.fieldName);
     }
   }
 }

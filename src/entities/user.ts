@@ -1,5 +1,5 @@
 import { objectIsEmpty } from '@/helpers';
-import { Either, failure, success } from '@/helpers/logic/Either';
+import { Either, left, right } from '@/helpers/logic/Either';
 import { ValidationError } from '@/validation/errors/validation-error';
 import { RequiredFieldValidator } from '@/validation/rules/required-field';
 import { ValidationCompositor } from '@/validation/validation-compositor';
@@ -34,9 +34,9 @@ export class User {
     const result = validationCompositor.validate();
 
     if (objectIsEmpty(result.errors)) {
-      return success({});
+      return right({});
     }
 
-    return failure(result);
+    return left(result);
   }
 }

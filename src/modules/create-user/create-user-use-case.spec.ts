@@ -20,7 +20,7 @@ describe('Create User Use Case', () => {
 
     const result = await sut.execute(data)
 
-    expect(result.isSuccess()).toBeTruthy();
+    expect(result.isRight()).toBeTruthy();
     expect(result.value).toEqual({
       props: expect.objectContaining({
         id: expect.any(String),

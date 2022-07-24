@@ -20,7 +20,7 @@ describe('User Entity', () => {
 
     const result = sut.validate()
 
-    expect(result.isSuccess()).toBeTruthy()
+    expect(result.isRight()).toBeTruthy()
   })
 
   it('should throw if a invalid User data is provided' , () => {
@@ -32,6 +32,6 @@ describe('User Entity', () => {
 
     const result = sut.validate()
 
-    expect(result.isFailure()).toBeTruthy()
+    expect(result.isLeft()).toBeTruthy()
   })
 })
