@@ -1,7 +1,12 @@
 import { Either, right } from '@/core/logic/Either';
 import { User } from '@/entities/user';
 import { ICreateUserRepository } from '@/repositories/users/create-user/i-create-user-repository';
-import { ICreateUserDTO } from './create-user-dto';
+
+export interface ICreateUserDTO {
+  name: string,
+  email: string,
+  password: string,
+}
 
 export class CreateUserUseCase {
   private createUserRepository: ICreateUserRepository;
