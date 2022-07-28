@@ -1,5 +1,5 @@
+import { Either, right } from '@/core/logic/Either';
 import { User } from '@/entities/user';
-import { Either, right } from '@/helpers/logic/Either';
 import { ICreateUserRepository } from '@/repositories/users/create-user/i-create-user-repository';
 import { ICreateUserDTO } from './create-user-dto';
 

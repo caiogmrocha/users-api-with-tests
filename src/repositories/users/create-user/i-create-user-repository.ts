@@ -1,6 +1,11 @@
 import { User } from '@/entities/user';
-import { ICreateUserDTO } from '@/modules/create-user/create-user-dto';
+
+export interface ICreateUserData {
+  name: string,
+  email: string,
+  password: string,
+}
 
 export interface ICreateUserRepository {
-  execute(data: ICreateUserDTO): Promise<User>
+  execute(data: ICreateUserData): Promise<User>
 }
