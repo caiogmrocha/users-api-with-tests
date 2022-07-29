@@ -1,6 +1,5 @@
 import { InMemoryCreateUserRepository } from "@/repositories/users/create-user/in-memory-create-user-repository"
-import { ICreateUserDTO } from "./create-user-dto"
-import { CreateUserUseCase } from "./create-user-use-case"
+import { CreateUserUseCase, ICreateUserDTO } from "./create-user-use-case"
 
 const makeSut = () => {
   const createUserRepository = new InMemoryCreateUserRepository()
