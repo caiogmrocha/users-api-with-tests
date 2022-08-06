@@ -24,7 +24,6 @@ export default class PrismaTestEnvironment extends NodeEnvironment {
 
     this.dbName = `test_${crypto.randomUUID().split('-').join('_')}`;
     this.connectionString = `mysql://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${this.dbName}`;
-    console.log(this.connectionString);
   }
 
   async setup () {
