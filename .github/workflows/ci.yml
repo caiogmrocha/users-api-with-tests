@@ -9,15 +9,6 @@ jobs:
   run-unit-tests:
     name: Run unit tests
     runs-on: ubuntu-latest
-    container: node:lts
-
-    services:
-      database:
-        image: mysql
-        ports:
-          - 3306:3306
-        env:
-          MYSQL_ROOT_PASSWORD: password
 
     steps:
 
@@ -30,7 +21,7 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        uses: npm install
+        run: npm install
 
       - name: Run unit tests
         run: npm run test:unit
