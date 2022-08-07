@@ -13,4 +13,16 @@ describe('[e2e] Create User Controller', () => {
 
     expect(response.status).toBe(422);
   })
+
+  it('should return 201 if user data is created', async () => {
+    const response = await request(app)
+      .post('/users')
+      .send({
+        name: 'any_name', // missing name param
+        email: 'any@email.com',
+        password: 'password'
+      })
+
+    expect(response.status).toBe(201);
+  })
 })
