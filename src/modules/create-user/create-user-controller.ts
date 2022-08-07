@@ -1,6 +1,6 @@
 import { objectIsEmpty } from '@/core/helpers';
 import { IController } from '@/core/http/i-controller';
-import { HttpResponse, unprocessable } from '@/core/http/i-http-response';
+import { clientError, created, HttpResponse, serverError, unprocessable } from '@/core/http/i-http-response';
 import { Either, left, right } from '@/core/logic/Either';
 import { ValidationError } from '@/validation/errors/validation-error';
 import { RequiredFieldValidator } from '@/validation/rules/required-field';
@@ -19,25 +19,32 @@ export class CreateUserController implements IController<CreateUserControllerReq
   ) {}
 
   async handle (request: CreateUserControllerRequest): Promise<HttpResponse> {
-    const validationResult = await this.validate(request);
+    try {
+      const validationResult = await this.validate(request);
 
-    if (validationResult.isLeft()) {
-      return unprocessable(validationResult.value);
+      if (validationResult.isLeft()) {
+        return unprocessable(validationResult.value);
+      }
+
+      const result = await this.createUserUseCase.execute(request);
+
+      if (result.isLeft()) {
+        return clientError(result.value);
+      }
+
+      return created();
+    } catch (error: any) {
+      return serverError(error);
     }
-
-    return {
-      body: 'Error',
-      statusCode: 400
-    };
   }
 
   async validate (request: CreateUserControllerRequest): Promise<Either<ValidationError, null>> {
     const { name, email, password } = request;
 
     const validationCompositor = new ValidationCompositor([
-      new RequiredFieldValidator('nome', name),
+      new RequiredFieldValidator('name', name),
       new RequiredFieldValidator('email', email),
-      new RequiredFieldValidator('senha', password)
+      new RequiredFieldValidator('password', password)
     ]);
 
     const result = validationCompositor.validate();
