@@ -10,4 +10,13 @@ describe('Email Validator', () => {
 
     expect(error).toEqual(new InvalidEmailError('email'))
   })
+
+  it('should return undefined if a valid email is provided', () => {
+    const anyField = 'valid@email.com'
+    const sut = new EmailValidator('email', anyField)
+
+    const error = sut.validate();
+
+    expect(error).toBeUndefined();
+  })
 })
