@@ -6,8 +6,8 @@ describe('[e2e] Create User Controller', () => {
     const response = await request(app)
       .post('/users')
       .send({
-        name: '', // missing name param
-        email: 'any@email.com',
+        name: 'any_name',
+        email: 'invalid_email',
         password: 'password'
       })
 

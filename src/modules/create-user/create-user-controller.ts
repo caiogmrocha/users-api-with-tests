@@ -3,6 +3,7 @@ import { IController } from '@/core/http/i-controller';
 import { clientError, created, HttpResponse, serverError, unprocessable } from '@/core/http/i-http-response';
 import { Either, left, right } from '@/core/logic/Either';
 import { ValidationError } from '@/validation/errors/validation-error';
+import { EmailValidator } from '@/validation/rules/email';
 import { RequiredFieldValidator } from '@/validation/rules/required-field';
 import { ValidationCompositor } from '@/validation/validation-compositor';
 import { CreateUserUseCase } from './create-user-use-case';
@@ -43,7 +44,10 @@ export class CreateUserController implements IController<CreateUserControllerReq
 
     const validationCompositor = new ValidationCompositor([
       new RequiredFieldValidator('name', name),
+
       new RequiredFieldValidator('email', email),
+      new EmailValidator('email', email),
+
       new RequiredFieldValidator('password', password)
     ]);
 
