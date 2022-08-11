@@ -14,5 +14,11 @@ export class MinimumValueValidator implements IValidator {
         return new MinimumValueError(this.fieldName, this.field, this.min);
       }
     }
+
+    if (typeof this.field === 'number') {
+      if (this.field < this.min) {
+        return new MinimumValueError(this.fieldName, this.field, this.min);
+      }
+    }
   }
 }
