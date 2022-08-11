@@ -11,4 +11,14 @@ describe('Minimum Value Validator', () => {
 
     expect(error).toEqual(new MinimumValueError('name', anyField, minimumValue))
   })
+
+  it('should return MinimumValueError if a invalid number is provided', () => {
+    const anyField = 100;
+    const minimumValue = 199
+    const sut = new MinimumValueValidator('price', anyField, minimumValue);
+
+    const error = sut.validate();
+
+    expect(error).toEqual(new MinimumValueError('price', anyField, minimumValue))
+  })
 })
