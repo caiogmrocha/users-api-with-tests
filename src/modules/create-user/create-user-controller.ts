@@ -4,6 +4,7 @@ import { clientError, created, HttpResponse, serverError, unprocessable } from '
 import { Either, left, right } from '@/core/logic/Either';
 import { ValidationError } from '@/validation/errors/validation-error';
 import { EmailValidator } from '@/validation/rules/email';
+import { MinimumValueValidator } from '@/validation/rules/minimum-value';
 import { RequiredFieldValidator } from '@/validation/rules/required-field';
 import { ValidationCompositor } from '@/validation/validation-compositor';
 import { CreateUserUseCase } from './create-user-use-case';
@@ -48,7 +49,8 @@ export class CreateUserController implements IController<CreateUserControllerReq
       new RequiredFieldValidator('email', email),
       new EmailValidator('email', email),
 
-      new RequiredFieldValidator('password', password)
+      new RequiredFieldValidator('password', password),
+      new MinimumValueValidator('password', password, 8)
     ]);
 
     const result = validationCompositor.validate();

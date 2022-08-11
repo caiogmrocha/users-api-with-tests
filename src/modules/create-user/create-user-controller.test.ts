@@ -8,7 +8,7 @@ describe('[e2e] Create User Controller', () => {
       .send({
         name: 'any_name',
         email: 'invalid_email',
-        password: 'password'
+        password: 'passwor' // 9 chars
       })
 
     expect(response.status).toBe(422);
@@ -18,7 +18,7 @@ describe('[e2e] Create User Controller', () => {
     const response = await request(app)
       .post('/users')
       .send({
-        name: 'any_name', // missing name param
+        name: 'any_name',
         email: 'any@email.com',
         password: 'password'
       })
