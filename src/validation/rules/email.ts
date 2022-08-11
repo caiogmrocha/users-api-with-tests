@@ -7,7 +7,7 @@ export class EmailValidator implements IValidator {
     public readonly field: unknown
   ) {}
 
-  validate (): void | Error {
+  validate (): void | InvalidEmailError {
     if (this.field && typeof this.field === 'string') {
       const regExp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
