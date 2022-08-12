@@ -8,7 +8,7 @@ export class MinimumValueValidator implements IValidator {
     public readonly min: number
   ) {}
 
-  validate (): void | Error {
+  validate (): void | MinimumValueError {
     if (typeof this.field === 'string') {
       if (this.field.length < this.min) {
         return new MinimumValueError(this.fieldName, this.field, this.min);
