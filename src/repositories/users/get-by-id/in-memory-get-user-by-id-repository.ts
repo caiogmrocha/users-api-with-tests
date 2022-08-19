@@ -1,5 +1,6 @@
 import { Either, left, right } from '@/core/logic/Either';
 import { User } from '@/entities/user';
+import { UserNotFoundError } from './errors/user-not-found-error';
 import { IGetUserByIdRepository } from './i-get-user-by-id-repository';
 
 export class InMemoryGetUserByIdRepository implements IGetUserByIdRepository {
@@ -14,6 +15,6 @@ export class InMemoryGetUserByIdRepository implements IGetUserByIdRepository {
       return right(user);
     }
 
-    return left(new Error('Erro ao recuperar o usuário'));
+    return left(new UserNotFoundError(id));
   }
 }
