@@ -30,4 +30,18 @@ describe('[e2e] Get User By Id Controller', () => {
       error: { name: UserNotFoundError.name }
     })
   })
+
+  it('should return 200 if user exists', async () => {
+    const response = await request(app).get('/users/2')
+
+    expect(response.status).toBe(200)
+    expect(response.body).toEqual({
+      props: expect.objectContaining({
+        id: expect.any(String),
+        name: 'Ana Victoria',
+        email: 'ana@bell.com',
+        password: 'password'
+      })
+    })
+  })
 })
