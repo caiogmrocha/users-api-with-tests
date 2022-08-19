@@ -1,4 +1,5 @@
 import { User } from "@/entities/user"
+import { UserNotFoundError } from "@/repositories/users/get-by-id/errors/user-not-found-error"
 import { IGetUserByIdRepository } from "@/repositories/users/get-by-id/i-get-user-by-id-repository"
 import { InMemoryGetUserByIdRepository } from "@/repositories/users/get-by-id/in-memory-get-user-by-id-repository"
 import { GetUserByIdUseCase } from "./get-user-by-id-use-case"
@@ -29,5 +30,17 @@ describe('Get User By Id Use Case', () => {
 
     expect(userOrError.isRight()).toBeTruthy();
     expect(userOrError.value).toEqual(new User({ id: '1', name: 'John Doe', email: 'john@doe.com', password: 'password' }))
+  })
+
+  it('should return UserNotFoundError if user does not exists', async () => {
+    const { sut } = makeSut([
+      new User({ id: '1', name: 'John Doe', email: 'john@doe.com', password: 'password' }),
+      new User({ id: '2', name: 'Ana Victoria', email: 'ana@bell.com', password: 'password' }),
+    ])
+
+    const userOrError = await sut.execute('3')
+
+    expect(userOrError.isLeft()).toBeTruthy();
+    expect(userOrError.value).toEqual(new UserNotFoundError('3'))
   })
 })
