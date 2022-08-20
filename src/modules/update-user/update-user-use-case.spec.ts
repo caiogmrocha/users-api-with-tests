@@ -25,6 +25,26 @@ const makeSut = (users: User[]): SutTypes => {
 }
 
 describe('Update User Use Case', () => {
+  it('should return a User instance if user is updated', async () => {
+    const { sut } = makeSut([
+      new User({ id: '1', name: 'John Doe', email: 'john@doe.com', password: 'password' }),
+      new User({ id: '2', name: 'Ana Victoria', email: 'ana@bell.com', password: 'password' }),
+    ]);
+    const data: IUpdateUserDTO = {
+      id: '2',
+      name: 'Ana Invictória',
+      email: 'ana@invictoria.com',
+      password: '87654321'
+    }
+
+    const userOrError = await sut.execute(data)
+
+    expect(userOrError.isRight()).toBeTruthy()
+    expect(userOrError.value).toEqual({
+      props: data
+    })
+  })
+
   it('should return UserNotFoundError if user does not exists', async () => {
     const { sut } = makeSut([
       new User({ id: '1', name: 'John Doe', email: 'john@doe.com', password: 'password' }),
