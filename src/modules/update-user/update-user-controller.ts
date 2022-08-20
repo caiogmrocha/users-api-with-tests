@@ -1,7 +1,8 @@
 import { objectIsEmpty } from '@/core/helpers';
 import { IController } from '@/core/http/i-controller';
-import { HttpResponse, ok, unprocessable } from '@/core/http/i-http-response';
+import { clientError, HttpResponse, notFound, ok, unprocessable } from '@/core/http/i-http-response';
 import { Either, left, right } from '@/core/logic/Either';
+import { UserNotFoundError } from '@/repositories/users/errors/user-not-found-error';
 import { ValidationError } from '@/validation/errors/validation-error';
 import { EmailValidator } from '@/validation/rules/email';
 import { MinimumValueValidator } from '@/validation/rules/minimum-value';
@@ -34,6 +35,18 @@ export class UpdateUserController implements IController<IUpdateUserControllerRe
       email: request.email,
       password: request.password
     });
+
+    if (userOrError.isLeft()) {
+      const error = userOrError.value;
+
+      switch (error.constructor) {
+        case UserNotFoundError:
+          return notFound(error);
+
+        default:
+          return clientError(error);
+      }
+    }
 
     return ok(userOrError.value);
   }
