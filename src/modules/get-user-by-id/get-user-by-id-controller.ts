@@ -1,6 +1,6 @@
 import { IController } from '@/core/http/i-controller';
 import { clientError, HttpResponse, notFound, ok } from '@/core/http/i-http-response';
-import { UserNotFoundError } from '@/repositories/users/get-by-id/errors/user-not-found-error';
+import { UserNotFoundError } from '@/repositories/users/errors/user-not-found-error';
 import { GetUserByIdUseCase } from './get-user-by-id-use-case';
 
 export interface GetUserByIdControllerRequest {
