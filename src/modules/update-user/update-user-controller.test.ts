@@ -21,6 +21,17 @@ describe('[e2e] Update User Controller', () => {
     });
   })
 
+  it('should return 200 if user does not exists', async () => {
+    const requestData = {
+      name: 'John Tre',
+      email: 'john@doe.com',
+      password: '12345678'
+    }
+    const response = await request(app).put('/users/2').send(requestData)
+
+    expect(response.status).toBe(200)
+  })
+
   it('should return 404 if user does not exists', async () => {
     const requestData = {
       name: 'John Doe',
