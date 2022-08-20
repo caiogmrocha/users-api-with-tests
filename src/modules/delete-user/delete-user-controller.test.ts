@@ -22,6 +22,20 @@ describe('[e2e] Delete User Controller', () => {
     });
   })
 
+  it('should return 200 if user is deleted', async () => {
+    const response = await request(app).delete('/users/2')
+
+    expect(response.status).toBe(200)
+    expect(response.body).toEqual({
+      props: expect.objectContaining({
+        id: expect.any(String),
+        name: 'Ana Victoria',
+        email: 'ana@bell.com',
+        password: 'password'
+      })
+    })
+  })
+
   it('should return 404 if user does not exists', async () => {
     const response = await request(app).delete('/users/3')
 
