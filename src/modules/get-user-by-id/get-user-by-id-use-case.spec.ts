@@ -1,5 +1,5 @@
 import { User } from "@/entities/user"
-import { UserNotFoundError } from "@/repositories/users/get-by-id/errors/user-not-found-error"
+import { UserNotFoundError } from "@/repositories/users/errors/user-not-found-error"
 import { IGetUserByIdRepository } from "@/repositories/users/get-by-id/i-get-user-by-id-repository"
 import { InMemoryGetUserByIdRepository } from "@/repositories/users/get-by-id/in-memory-get-user-by-id-repository"
 import { GetUserByIdUseCase } from "./get-user-by-id-use-case"

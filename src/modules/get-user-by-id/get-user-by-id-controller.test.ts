@@ -1,6 +1,6 @@
 import { app } from '@/app';
 import { PrismaCreateUserRepository } from '@/repositories/users/create-user/prisma-create-user-repository';
-import { UserNotFoundError } from '@/repositories/users/get-by-id/errors/user-not-found-error';
+import { UserNotFoundError } from '@/repositories/users/errors/user-not-found-error';
 import request from 'supertest';
 import { CreateUserUseCase } from '../create-user/create-user-use-case';
 
