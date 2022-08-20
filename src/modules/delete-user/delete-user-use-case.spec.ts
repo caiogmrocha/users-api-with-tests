@@ -10,7 +10,7 @@ type SutTypes = {
 }
 
 const makeSut = (users: User[]): SutTypes => {
-  const deleteUserRepository = new InMemoryDeleteUserRepository()
+  const deleteUserRepository = new InMemoryDeleteUserRepository(users)
   const sut = new DeleteUserUseCase(deleteUserRepository)
 
   return {
@@ -30,5 +30,23 @@ describe('Delete User Use Case', () => {
 
     expect(userOrError.isLeft()).toBeTruthy()
     expect(userOrError.value).toEqual(new UserNotFoundError('3'))
+  })
+
+  it('should return User instance if user is deleted', async () => {
+    const { sut, deleteUserRepository } = makeSut([
+      new User({ id: '1', name: 'John Doe', email: 'john@doe.com', password: 'password' }),
+      new User({ id: '2', name: 'Ana Victoria', email: 'ana@bell.com', password: 'password' }),
+    ])
+
+    const userOrError = await sut.execute('2')
+
+    expect(userOrError.isRight()).toBeTruthy()
+    expect(userOrError.value).toEqual(new User({
+      id: '2',
+      name:
+      'Ana Victoria',
+      email: 'ana@bell.com',
+      password: 'password'
+    }))
   })
 })
